@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?><customreport id="-3c13ba0c:13ddfa55cf3:-7d57" name="JUnitReport">
+   <segment attach="Attachment" format="XML" report="JUnit" text="Here are the test results from %%SUITE/NAME%%&#10;The test was run in %%ENVIRONMENT/NAME%%" type="Report"/>
+</customreport>

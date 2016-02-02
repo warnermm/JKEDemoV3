@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?><_c buildID="I20121108_2241" comments="Project created on Jan 22, 2013" creationVersion="8.0.1" extDocPrefix="" name="JKERITVirtualizationTests" owner="Administrator" rulesCacheUri="%%PROJECT/ROOT%%Rules" uuid="0000013c-64f4-f1d7-0004-b7db0218f086">
+   <rootEnvironmentConfig>
+      <environmentVariable evdescription="" key="app_server_host" value=""/>
+      <environmentVariable evdescription="" key="database_host" value=""/>
+   </rootEnvironmentConfig>
+   <dateTimeConfig date="yyyy/MM/dd" dateTime="dd-MMM-yyyy HH:mm:ss" time="HH:mm:ss.SSS"/>
+   <serverSettings ghRepositoryURL="http://localhost:7819/RTCP/" resultsServerURL="">
+      <dbConnectionParameters maxConnections="1" poolName="DefaultPoolName">
+         <connectionParams driverClass="com.mysql.jdbc.Driver" password="#com.ghc.1!5bedE357A2EB7262116255340CB26A4340E4" url="jdbc:mysql://localhost:3306/ghtester" user="ghtester">
+            <stubSettings maxProcCallCount="10000" maxResultSetRowCount="10000" maxRowCount="10000" password="#com.ghc.1!8637" procedureLearningBehaviour="1" schema="" url="" useIntegratedDB="true" user=""/>
+            <storedProcedureFilter catalogFilterEnabled="false" catalogFilterPattern="" procedureFilterEnabled="false" procedureFilterPattern="" schemaFilterEnabled="true" schemaFilterPattern="ghtester" storedProceduresRetrievalEnabled="false" useConnectionUsername="true"/>
+            <timestampFormatting timestampFormatZero="false" timestampFormattingEnabled="false" timestampPrecision="9"/>
+         </connectionParams>
+      </dbConnectionParameters>
+   </serverSettings>
+   <permissionsSettings autoLogin="true" host="INNOVATEQM" permFactId="ldap.permissions.factory.none" port="389" pswd="2jmj7l5rSw0yVb/vlWAYkK/YBwk=" signResources="false"/>
+   <Clouds>
+      <Cloud keyId="" secretKey="#com.ghc.1!d1f8" type="amazon"/>
+   </Clouds>
+   <resultPublishers disableAll="false">
+      <publisher enabled="true" location="/tmp/RITJKEVirtualizationTests/Results" name="junit" type="FILE">
+         <default name="" report="-3c13ba0c:13ddfa55cf3:-7d57" what="Live" when="Always"/>
+      </publisher>
+   </resultPublishers>
+   <publishedResourceInfo>
+      <info domain="IBM" serverUrl="http://localhost:7819/RTCP/" vMajor="1" vMinor="0">
+         <resource id="-14741a7b:13c64f33799:-7ed8"/>
+      </info>
+      <info domain="JKE" serverUrl="http://greenhat:7819/RTCP/" vMajor="1" vMinor="0">
+         <resource id="LOGICAL_ROOT_ID"/>
+      </info>
+   </publishedResourceInfo>
+</_c>

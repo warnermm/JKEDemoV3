@@ -1,0 +1,160 @@
+<!--
+/*******************************************************************************
+ * Licensed Materials - Property of IBM
+ * (c) Copyright IBM Corporation 2010. All Rights Reserved. 
+ * 
+ * Note to U.S. Government Users Restricted Rights:  Use, 
+ * duplication or disclosure restricted by GSA ADP Schedule 
+ * Contract with IBM Corp.
+ *******************************************************************************/
+-->
+
+<project name="com.ibm.rqm.integration.tasks" default="publishJKEFvtScripts" xmlns:ram="antlib:com.ibm.ram.ant">
+
+	<!-- Set properties  -->
+	<property name="project.name" value="JKEFunctionalTests" />
+	<property name="loadDir" value="${basedir}/.." />
+	<property name="srcdir" value="${loadDir}/${project.name}" />
+	<property name="destdir" value="${loadDir}/build" />
+	<property name="destdir.bin" value="${loadDir}/build/bin" />
+	<property name="destdir.distro" value="${loadDir}/build/distro" />
+	<property name="destdir.report" value="${loadDir}/build/report" />
+	<property name="destdir.asset" value="${loadDir}/build/asset" />
+	<property name="applibsdir" value="${srcdir}/libs" />
+	<property name="compilelog" value="${destdir}/compile.xml" />
+	<property name="BUILD_ID" value="I20120919-0303" />
+	<property name="package.name" value="${project.name}-${BUILD_ID}.zip" />
+
+	<!-- Fail if using an unsupported version of Ant -->
+	<fail message="RAM Ant library only supports 1.7.x runtime of Ant">
+		<condition>
+			<not>
+				<contains string="${ant.version}" substring=" 1.7." />
+			</not>
+		</condition>
+	</fail>
+
+	<echo>version=${ant.version}</echo>
+	<echo message="loadDir=${loadDir}" />
+	<echo level="info">BUILD_ID=${BUILD_ID}</echo>
+
+	<!-- Initialize RAM tasks. -->
+	<taskdef uri="antlib:com.ibm.ram.ant" resource="com/ibm/ram/ant/antlib.xml" />
+
+	<target name="publishJKEFvtScripts" depends="compile,publish" />
+
+	<target name="setup" description="Load required properties from the properties file">
+		<!-- Load properties from the build.properties file -->
+		<property file="${srcdir}/build.properties" />
+
+		<!-- Check required properties are set correctly -->
+		<fail message="[app_lib_properties.repository_url] property is not set" unless="app_lib_properties.repository_url" />
+		<fail message="[app_lib_properties.user] property is not set" unless="app_lib_properties.user" />
+		<fail message="[app_lib_properties.password] property is not set" unless="app_lib_properties.password" />
+
+		<fail message="[application.name] property is not set" unless="application.name" />
+		<fail message="[application.version] property is not set" unless="application.version" />
+
+		<fail message="[asset.application.title] property is not set" unless="asset.application.title" />
+		<fail message="[asset.application.community] property is not set" unless="asset.application.community" />
+		<fail message="[asset.application.type] property is not set" unless="asset.application.type" />
+		<fail message="[asset.application.shortDescription] property is not set" unless="asset.application.shortDescription" />
+		
+		<property name="BUILD_TYPE" value="Integration" />
+		<property name="buildEnvironment" value="Development" />
+
+		<!-- setup a connection to the RAM server -->
+		<echo message="Setup connection to RAM server: uid=${app_lib_properties.user}, url=${app_lib_properties.repository_url}" />
+		<ram:server id="ramServer" username="${app_lib_properties.user}" password="${app_lib_properties.password}" url="${app_lib_properties.repository_url}" />
+	</target>
+
+	<target name="publish" depends="setup" description="Publish the JKE FVT scripts assest to the RAM server">
+
+		<echo message="Publishing RAM Asset: ${application.name}/${application.version}" />
+		<echo message="Path of publishing RAM Asset: ${asset.application.path}" />
+
+		<property name="BUILD_URL" value="localhost" />
+		<property name="asset.version-full" value="${application.version}.${BUILD_ID}" />
+		<property name="asset.application.guid" value="${application.name}_test" />
+		
+		<!-- create a temporary directory to store infrastructure artifacts -->
+		<mkdir dir="${destdir.asset}" />
+		<!-- Create a zip file containing the JKE FVT scripts jar file -->
+		<zip basedir="${destdir.distro}" destfile="${destdir.asset}/${package.name}" />
+		<property name="asset.application.path" value="${destdir.asset}/${package.name}" />
+
+		<ram:modify server="ramServer" guidproperty="asset.application.guid-returned" clearCache="true">
+			<ram:search guid="${asset.application.guid}" version="${asset.version-full}" />
+			<ram:asset>
+				<ram:guid>${asset.application.guid}</ram:guid>
+				<ram:name>${asset.application.title}</ram:name>
+				<ram:version>${asset.version-full}</ram:version>
+				<ram:community>${asset.application.community}</ram:community>
+				<ram:assetType>${asset.application.type}</ram:assetType>
+				<ram:shortDescription>${asset.application.shortDescription}</ram:shortDescription>
+				<ram:attribute name="Build ID">
+					<ram:value>${BUILD_ID}</ram:value>
+				</ram:attribute>
+				<ram:attribute name="Build Type">
+					<ram:value>${BUILD_TYPE}</ram:value>
+				</ram:attribute>
+				<ram:attribute name="Build URL">
+					<ram:value>&lt;a href='${BUILD_URL}' target='_blank' &gt; Build Info&lt;a&gt;&#xD;&#xA;</ram:value>
+				</ram:attribute>
+				<ram:artifact file="${asset.application.path}" />
+				<ram:categoryList>Continuous Delivery/Deployment History/${buildEnvironment}/Tested/Success</ram:categoryList>
+			</ram:asset>
+		</ram:modify>
+
+		<property name="application_url" value="${app_lib_properties.repository_url}/oslc/assets/${asset.application.guid}/${asset.version-full}" />
+		<property name="application_artifact_url" value="${application_url}/artifactContents/${package.name}" />
+		
+		<echo level="info">Application Asset Info:</echo>
+		<echo level="info">guid=${asset.application.guid}     guid-returned=${asset.application.guid-returned}</echo>
+		<echo level="info">type=${asset.application.type}</echo>
+		<echo level="info">name=${asset.application.title}</echo>
+		<echo level="info">version=${asset.version-full}</echo>
+		<echo level="info">artifact file=${asset.application.path}</echo>
+
+		<echo level="info">Url of the published asset : ${application_url}</echo>
+		<echo level="info">Publishing application file ${package.name} to the library</echo>
+		<echo level="info">Published application at url : ${application_url}</echo>
+	</target>
+
+	<path id="classpath">
+		<fileset dir="${applibsdir}">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+	
+	<target name="compile" depends="clean" description="Compile the source code to jar">
+		<!-- Set properties -->
+		<property name="build.debuglevel" value="lines,vars,source" />
+		<property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter" />
+
+		<echo level="info">Compile all the functional test scripts</echo>
+
+		<mkdir dir="${destdir}" />
+		<mkdir dir="${destdir.bin}" />
+		<mkdir dir="${destdir.distro}" />
+
+		<!-- Compile the classes -->
+		<javac includeantruntime="false" destdir="${destdir.bin}" debug="on" nowarn="on" failonerror="false" source="1.5" target="1.5">
+			<classpath>
+				<path refid="classpath" />
+			</classpath>
+			<src path="${srcdir}" />
+			<compilerarg value="-log" />
+			<compilerarg value="${compilelog}" />
+		</javac>
+
+		<!-- Create the jar file -->
+		<jar destfile="${destdir.distro}/${project.name}.jar" basedir="${destdir.bin}">
+		</jar>
+	</target>
+
+	<target name="clean" description="Clean up">
+		<!-- Delete and recreate the directory structure where we will produce the build results, jar and zip file -->
+		<delete dir="${destdir}" />
+	</target>
+</project>

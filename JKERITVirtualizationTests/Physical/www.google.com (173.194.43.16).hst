@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?><editableResource createdTimestamp="1379514448436" createdUser="virtuser" id="-17cb3001:14131773b84:-7e85" selfDescribing="www.google.com (173.194.43.16)" type="host_machine_resource" updatedTimestamp="1379514448436" updatedUser="virtuser" version="1.0">
+   <loggingConfiguration debug="false" writeStubEventsToDB="false"/>
+   <resourceConfig host_address="173.194.43.16" user_host_name="www.google.com"/>
+</editableResource>

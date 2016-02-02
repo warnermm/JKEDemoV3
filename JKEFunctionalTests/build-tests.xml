@@ -1,0 +1,73 @@
+<!--
+/*******************************************************************************
+ * Licensed Materials - Property of IBM
+ * (c) Copyright IBM Corporation 2010. All Rights Reserved. 
+ * 
+ * Note to U.S. Government Users Restricted Rights:  Use, 
+ * duplication or disclosure restricted by GSA ADP Schedule 
+ * Contract with IBM Corp.
+ *******************************************************************************/
+-->
+<project name="com.ibm.rqm.integration.tasks" default="all">
+
+	<!-- Set properties  -->
+	<!--<property name="test.project.name" value="JKEFunctionalTests" />-->
+	<property name="loadDir" value="${basedir}/.." />
+	<property name="srcdir" value="${loadDir}/${test.project.name}" />
+	<property name="destdir" value="${loadDir}/build" />
+	<property name="destdir.bin" value="${loadDir}/build/bin" />
+	<property name="destdir.distro" value="${loadDir}/build/distro" />
+	<property name="applibsdir" value="${srcdir}/libs" />
+	<property name="compilelog" value="${destdir}/compile.xml" />
+
+	<!-- Fail if using an unsupported version of Ant -->
+	<fail message="RAM Ant library only supports 1.7.x runtime of Ant">
+		<condition>
+			<not>
+				<contains string="${ant.version}" substring=" 1.7." />
+			</not>
+		</condition>
+	</fail>
+
+	<echo>version=${ant.version}</echo>
+	<echo message="loadDir=${loadDir}" />
+
+	<target name="all" depends="compile" />
+
+	<target name="clean">
+		<!-- Delete and recreate the directory structure where we will produce the build results, jar and zip file -->
+		<delete dir="${destdir}" />
+	</target>
+
+	<path id="classpath">
+		<fileset dir="${applibsdir}">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+	
+	<target name="compile" depends="clean" description="Compile the source code to jar">
+		<!-- Set properties -->
+		<property name="build.debuglevel" value="lines,vars,source" />
+		<property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter" />
+
+		<echo level="info">Compile all the functional test scripts</echo>
+
+		<mkdir dir="${destdir}" />
+		<mkdir dir="${destdir.bin}" />
+		<mkdir dir="${destdir.distro}" />
+
+		<!-- Compile the classes -->
+		<javac includeantruntime="false" destdir="${destdir.bin}" debug="on" nowarn="on" failonerror="false" source="1.5" target="1.5">
+			<classpath>
+				<path refid="classpath" />
+			</classpath>
+			<src path="${srcdir}" />
+			<compilerarg value="-log" />
+			<compilerarg value="${compilelog}" />
+		</javac>
+
+		<!-- Create the jar file -->
+		<jar destfile="${destdir.distro}/${test.project.name}.jar" basedir="${destdir.bin}">
+		</jar>
+	</target>
+</project>

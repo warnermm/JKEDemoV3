@@ -1,0 +1,165 @@
+<!--
+/*******************************************************************************
+ * Licensed Materials - Property of IBM
+ * (c) Copyright IBM Corporation 2010. All Rights Reserved. 
+ * 
+ * Note to U.S. Government Users Restricted Rights:  Use, 
+ * duplication or disclosure restricted by GSA ADP Schedule 
+ * Contract with IBM Corp.
+ *******************************************************************************/
+-->
+<!--
+This example is used to build the JKE sample application.
+-->
+
+<project name="Build and test the JKE sample application" default="web">
+	
+	<property name="loadDir" value="${basedir}/.." />
+	<property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter" />
+	<property name="build.debuglevel" value="lines,vars,source"/> 
+	<property name="destdir" value="${loadDir}/build" />
+	<property name="destdir.bin" value="${loadDir}/build/bin" />
+	<property name="destdir.distro" value="${loadDir}/build/distro" />
+	<property name="destdir.distro.libs" value="${loadDir}/build/distro/libs" />
+	<property name="destdir.tests" value="${loadDir}/build/tests" />
+	<property name="destdir.tests.unit" value="${loadDir}/build/tests/unit" />
+	<property name="destdir.tests.functional" value="${loadDir}/build/tests/functional" />
+	<property name="compilelog" value="${destdir}/compile.xml" />
+	<property name="destdir.db" value="${loadDir}/build/db" />
+	<property name="destdir.gh-test" value="${loadDir}/build/gh-test" />
+	<property name="destdir.war" value="${loadDir}/../docker.jke.web/jke" />
+	
+	
+	<property name="unitTestsFailed" value="false"/>
+	
+	<echo>version=${ant.version}</echo>
+
+	
+	<target name="clean">
+		
+		<echo message="loadDir=${loadDir}" />
+		
+		<delete dir="${destdir}" />
+		<mkdir dir="${destdir}" />
+		<mkdir dir="${destdir.bin}" />
+		<mkdir dir="${destdir.distro}" />
+		<mkdir dir="${destdir.distro.libs}" />
+		<mkdir dir="${destdir.db}" />
+		<mkdir dir="${destdir.war}" />
+		<mkdir dir="${destdir.gh-test}" />
+		<mkdir dir="${destdir.tests}" />
+		<mkdir dir="${destdir.tests.unit}" />
+		<mkdir dir="${destdir.tests.functional}" />
+		
+		
+	</target>
+
+	<target name="web" depends="clean">
+		
+		<property name="applibsdir" value ="${loadDir}/JKEPrereqJars"/>
+		<property name="buildlibsdir" value ="${loadDir}/JKEBuildScripts/libs"/>
+		<property name="buildbatsdir" value ="${loadDir}/JKEBuildLibs/bats"/>
+		<property name="classpath" value="${buildlibsdir}/jdtCompilerAdapter.jar;${applibsdir}/derby.jar;${applibsdir}/swt-gtk-linux-x86_64/swt.jar;${applibsdir}/junit.jar;${applibsdir}/com.ibm.team.json_1.0.0.I200908182153.jar;${applibsdir}/org.mortbay.jetty.server_6.1.23.v201004211559.jar;${applibsdir}/org.mortbay.jetty.util_6.1.23.v201004211559.jar;${applibsdir}/javax.servlet_2.5.0.v200910301333.jar"/>
+		<javac destdir="${destdir.bin}" classpath="${classpath}"
+			debug="on" nowarn="on" failonerror="false" source="1.5" target="1.5" includeantruntime="false">
+			<src path="${loadDir}/JKEBusinessData" />
+			<src path="${loadDir}/JKEBusinessLogic" />
+			<src path="${loadDir}/JKEBusinessLogicTests" />
+			<src path="${loadDir}/JKEDBAccess" />
+			<src path="${loadDir}/JKEJavaUI" />
+			<src path="${loadDir}/JKEServer" />
+			<compilerarg value="-log" /> 
+			<compilerarg value="${compilelog}" /> 			
+		</javac>
+		
+		<copy todir="${destdir.bin}">
+					<fileset dir="${loadDir}/JKEDBAccess/src">
+						<include name="**/*.properties"/>
+					</fileset>
+		</copy>
+
+		
+		<copy todir="${destdir.bin}">
+			<fileset dir="${loadDir}/JKEJavaUI/src">
+				<include name="**/*.gif"/>
+				<include name="**/*.png"/>
+				<include name="**/*.jpg"/>
+				<include name="**/*.bmp"/>
+			</fileset>
+		</copy>
+		
+		<copy todir="${destdir.distro.libs}">
+			<fileset dir="${applibsdir}">
+				<include name="**/*.jar"/>
+			</fileset>
+		</copy>
+		
+		<copy todir="${destdir.distro.libs}">
+			<dirset dir="${applibsdir}">
+				<include name="swt*"/>
+			</dirset>
+		</copy>
+		
+		<copy todir="${destdir.distro}">
+			<fileset dir="${loadDir}/JKEBuildScripts/start">
+				<include name="**/*"/>
+			</fileset>
+		</copy>
+		
+		<chmod dir="${destdir.distro}" perm="ugo+rx" includes="**/*.sh"/>
+		
+		<filter token="buildLabel" value="${buildLabel}"/>
+		<filter token="buildTimestamp" value="${buildTimestamp}"/>
+		<copy todir="${destdir.distro}/web" filtering="true">
+			<fileset dir="${loadDir}/JKEWebUI/WebContent">
+				<include name="**/*"/>
+				<!-- don't copy binary content w/ filtering turned on, corrupts files -->
+				<exclude name="**/*.png"/>
+				<exclude name="**/*.jpg"/>
+				<exclude name="**/*.gif"/>
+			</fileset>
+		</copy>	
+		
+		<!-- now copy binary content without filtering turned off -->
+		<copy todir="${destdir.distro}/web">
+			<fileset dir="${loadDir}/JKEWebUI/WebContent">
+				<include name="**/*.png"/>
+				<include name="**/*.jpg"/>
+				<include name="**/*.gif"/>
+			</fileset>
+		</copy>	
+		
+		<!-- generate special "build" file so we know which build has been deployed -->
+		<touch file="${destdir.distro}/web/${buildTimestamp}"/>
+
+		<jar
+			destfile="${destdir.distro}/jke.jar"			
+			basedir="${destdir.bin}">
+			<manifest>
+				<attribute name="Built-By" value="Sample Build User"/>
+				<attribute name="Main-class" value="com.jke.ui.JKEBanking"/>
+			</manifest>
+		</jar>
+		
+			
+					
+		<!-- create war file -->
+		<war destfile="${destdir.war}/jke.war" webxml="${loadDir}/JKEServer/metadata/web.xml">
+		  <fileset dir="${destdir.distro}/web"/>
+		  <classes dir="${destdir.distro}">
+		  		<include name="JKEDB.properties"/>
+		  </classes>
+		  <lib dir="${destdir.distro.libs}"/>
+		  <lib dir="${destdir.distro}">
+		  		<include name="jke.jar"/>
+		  </lib>
+		  <webinf dir="${loadDir}/JKEServer/metadata">
+		  		<include name="ibm-web-ext.xml"/>
+		  </webinf>
+		</war>
+
+		<delete dir="${destdir}" />
+			
+	</target>
+	
+</project>	

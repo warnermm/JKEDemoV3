@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><editableResource createdTimestamp="1378434043221" createdUser="virtuser" id="-2a83ffd0:140f112174d:-7eb3" selfDescribing="www.google.com (173.194.37.50) - System Statistics (default)" type="probe_resource" updatedTimestamp="1378434043221" updatedUser="virtuser" version="1.0">
+   <loggingConfiguration debug="false" writeStubEventsToDB="false"/>
+   <resourceConfig defaultFlag="true" name="default" physicalResourceID="-2a83ffd0:140f112174d:-7eba" probeID="plugin.custom.SysStat">
+      <SysStatDatasource allProcesses="true" configuration="default"/>
+   </resourceConfig>
+</editableResource>

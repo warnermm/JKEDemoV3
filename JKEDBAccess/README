@@ -1,0 +1,32 @@
+Default database is Apache Derby as an embedded database. 
+
+The MySQL backend can be enabled as follows:
+
+1) Install MySQL 5 or higher
+2) Adapt the JKEDB.properties file as follows:
+#----------------------------
+# Enables MySQL db backend
+jdbc.dbms=mysql
+
+#
+# MySQL properties
+#
+jdbc.driver=com.mysql.jdbc.Driver
+jdbc.protocol=jdbc:mysql:
+jdbc.hostname=localhost
+jdbc.port=3306
+jdbc.dbname=JKEDB
+jdbc.user=jke_user
+jdbc.password=secret
+#----------------------------
+
+3) Execute the file 'scripts/mysql.sql' as admin user on mysql, such as:
+mysql -u root -p < scripts/mysql.sql
+
+If you change the properties 'jdbc.dbname', 'jdbc.user' or 'jdbc.password' 
+the mysql.sql script need to be adapted accordingly.
+
+4) Check if you can login with the newly created user
+mysql -u jke_user -p
+
+5) Run the JKEServer server and it should use the MySQL backend

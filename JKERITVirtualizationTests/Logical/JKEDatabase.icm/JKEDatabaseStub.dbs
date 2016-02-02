@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?><editableResource createdTimestamp="1363032204951" createdUser="virtuser" id="cc08df6:13d5af7d388:-7e6a" type="datbase_stub_resource" updatedTimestamp="1363877096465" updatedUser="virtuser" version="1.1">
+   <loggingConfiguration debug="true" writeStubEventsToDB="true"/>
+   <resourceConfig _version="1.1" persistent="false" procCallMode="RETURN_FIRST_MATCH" procErrorMode="FAIL_ON_ERROR">
+      <snapshot>
+         <table colCount="2" creationSql="CREATE TABLE STUB.COM_IBM_ID_TABLE (SEQ INTEGER NOT NULL AUTO_INCREMENT, DUMMY INTEGER, PRIMARY KEY (SEQ))" name="COM_IBM_ID_TABLE" rowCount="0">
+            <rowHeader>
+               <colHeader name="SEQ" type="INTEGER"/>
+               <colHeader name="DUMMY" type="INTEGER"/>
+            </rowHeader>
+         </table>
+         <table colCount="4" creationSql="CREATE TABLE STUB.COM_IBM_STPR (PROC_NAME VARCHAR(64), PARM_COUNT INTEGER, PROC_TABLE_NAME VARCHAR(64), PROC_FLAGS VARCHAR(512))" name="COM_IBM_STPR" rowCount="0">
+            <rowHeader>
+               <colHeader name="PROC_NAME" type="VARCHAR(64)"/>
+               <colHeader name="PARM_COUNT" type="INTEGER"/>
+               <colHeader name="PROC_TABLE_NAME" type="VARCHAR(64)"/>
+               <colHeader name="PROC_FLAGS" type="VARCHAR(512)"/>
+            </rowHeader>
+         </table>
+         <table colCount="7" creationSql="CREATE TABLE STUB.COM_IBM_STPR_PARMS (PROC_NAME VARCHAR(64), PARM_COUNT INTEGER, PARM_INDEX INTEGER, PARM_NAME VARCHAR(64), PARM_TYPE INTEGER, PARM_DATA_TYPE VARCHAR(512), PARM_FLAGS VARCHAR(512))" name="COM_IBM_STPR_PARMS" rowCount="0">
+            <rowHeader>
+               <colHeader name="PROC_NAME" type="VARCHAR(64)"/>
+               <colHeader name="PARM_COUNT" type="INTEGER"/>
+               <colHeader name="PARM_INDEX" type="INTEGER"/>
+               <colHeader name="PARM_NAME" type="VARCHAR(64)"/>
+               <colHeader name="PARM_TYPE" type="INTEGER"/>
+               <colHeader name="PARM_DATA_TYPE" type="VARCHAR(512)"/>
+               <colHeader name="PARM_FLAGS" type="VARCHAR(512)"/>
+            </rowHeader>
+         </table>
+         <table colCount="3" creationSql="CREATE TABLE STUB.COM_IBM_STPR_RESULTSETS (PROC_RESULT_ID INTEGER, PROC_RESULT_INDEX INTEGER, TABLE_NAME VARCHAR(64))" name="COM_IBM_STPR_RESULTSETS" rowCount="0">
+            <rowHeader>
+               <colHeader name="PROC_RESULT_ID" type="INTEGER"/>
+               <colHeader name="PROC_RESULT_INDEX" type="INTEGER"/>
+               <colHeader name="TABLE_NAME" type="VARCHAR(64)"/>
+            </rowHeader>
+         </table>
+         <table colCount="2" creationSql="CREATE TABLE STUB.JKEKeys (KeyID CHAR(8) NOT NULL, NextKey INTEGER, PRIMARY KEY (KeyID))" name="JKEKeys" rowCount="1">
+            <rowHeader>
+               <colHeader name="KeyID" type="CHAR(8)"/>
+               <colHeader name="NextKey" type="INTEGER"/>
+            </rowHeader>
+            <row>
+               <col type="java.lang.String" value="Contrib"/>
+               <col type="java.lang.Integer" value="1"/>
+            </row>
+         </table>
+         <table colCount="8" creationSql="CREATE TABLE STUB.JKEaccounts (AccountNumber INTEGER NOT NULL, Balance FLOAT, Dividends FLOAT, DividendsETD FLOAT, Contributions FLOAT, ContributionsETD FLOAT, UserName VARCHAR(40) NOT NULL, AccountType VARCHAR(30) NOT NULL, PRIMARY KEY (AccountNumber))" name="JKEaccounts" rowCount="8">
+            <rowHeader>
+               <colHeader name="AccountNumber" type="INTEGER"/>
+               <colHeader name="Balance" type="FLOAT"/>
+               <colHeader name="Dividends" type="FLOAT"/>
+               <colHeader name="DividendsETD" type="FLOAT"/>
+               <colHeader name="Contributions" type="FLOAT"/>
+               <colHeader name="ContributionsETD" type="FLOAT"/>
+               <colHeader name="UserName" type="VARCHAR(40)"/>
+               <colHeader name="AccountType" type="VARCHAR(30)"/>
+            </rowHeader>
+            <row>
+               <col type="java.lang.Integer" value="200"/>
+               <col type="java.lang.Double" value="2000.0"/>
+               <col type="java.lang.Double" value="1000.0"/>
+               <col type="java.lang.Double" value="5500.0"/>
+               <col type="java.lang.Double" value="0.0"/>
+               <col type="java.lang.Double" value="0.0"/>
+               <col type="java.lang.String" value="jbrown"/>
+               <col type="java.lang.String" value="Checking"/>
+            </row>
+            <row>
+               <col type="java.lang.Integer" value="201"/>
+               <col type="java.lang.Double" value="12500.0"/>
+               <col type="java.lang.Double" value="500.0"/>
+               <col type="java.lang.Double" value="3500.0"/>
+               <col type="java.lang.Double" value="0.0"/>
+               <col type="java.lang.Double" value="0.0"/>
+               <col type="java.lang.String" value="jbrown"/>
+               <col type="java.lang.String" value="Savings"/>
+            </row>
+            <row>
+               <col type="java.lang.Integer" value="202"/>
+               <col type="java.lang.Double" value="25.0"/>
+               <col type="java.lang.Double" value="500.0"/>
+               <col type="java.lang.Double" value="5.0"/>
+               <col type="java.lang.Double" value="0.0"/>
+               <col type="java.lang.Double" value="0.0"/>
+               <col type="java.lang.String" value="jbrown"/>
+               <col type="java.lang.String" value="IRA"/>
+            </row>
+            <row>
+               <col type="java.lang.Integer" value="203"/>
+               <col type="java.lang.Double" value="500.0"/>
+               <col type="java.lang.Double" value="500.0"/>
+               <col type="java.lang.Double" value="35.0"/>
+               <col type="java.lang.Double" value="0.0"/>
+               <col type="java.lang.Double" value="0.0"/>
+               <col type="java.lang.String" value="jbrown"/>
+               <col type="java.lang.String" value="Money_Market"/>
+            </row>
+            <row>
+               <col type="java.lang.Integer" value="300"/>
+               <col type="java.lang.Double" value="500.0"/>
+               <col type="java.lang.Double" value="500.0"/>
+               <col type="java.lang.Double" value="1000.0"/>
+               <col type="java.lang.Double" value="0.0"/>
+               <col type="java.lang.Double" value="0.0"/>
+               <col type="java.lang.String" value="rbetts"/>
+               <col type="java.lang.String" value="Checking"/>
+            </row>
+            <row>
+               <col type="java.lang.Integer" value="301"/>
+               <col type="java.lang.Double" value="3400.0"/>
+               <col type="java.lang.Double" value="500.0"/>
+               <col type="java.lang.Double" value="100.0"/>
+               <col type="java.lang.Double" value="0.0"/>
+               <col type="java.lang.Double" value="0.0"/>
+               <col type="java.lang.String" value="rbetts"/>
+               <col type="java.lang.String" value="Savings"/>
+            </row>
+            <row>
+               <col type="java.lang.Integer" value="302"/>
+               <col type="java.lang.Double" value="5500.0"/>
+               <col type="java.lang.Double" value="500.0"/>
+               <col type="java.lang.Double" value="50.0"/>
+               <col type="java.lang.Double" value="0.0"/>
+               <col type="java.lang.Double" value="0.0"/>
+               <col type="java.lang.String" value="rbetts"/>
+               <col type="java.lang.String" value="IRA"/>
+            </row>
+            <row>
+               <col type="java.lang.Integer" value="303"/>
+               <col type="java.lang.Double" value="75.0"/>
+               <col type="java.lang.Double" value="500.0"/>
+               <col type="java.lang.Double" value="5.0"/>
+               <col type="java.lang.Double" value="0.0"/>
+               <col type="java.lang.Double" value="0.0"/>
+               <col type="java.lang.String" value="rbetts"/>
+               <col type="java.lang.String" value="Money_Market"/>
+            </row>
+         </table>
+         <table colCount="5" creationSql="CREATE TABLE STUB.JKEcontributions (ContributionID INTEGER NOT NULL, AccountNumber INTEGER, Organization VARCHAR(50), Percentage REAL, Date VARCHAR(20), PRIMARY KEY (ContributionID))" name="JKEcontributions" rowCount="0">
+            <rowHeader>
+               <colHeader name="ContributionID" type="INTEGER"/>
+               <colHeader name="AccountNumber" type="INTEGER"/>
+               <colHeader name="Organization" type="VARCHAR(50)"/>
+               <colHeader name="Percentage" type="REAL"/>
+               <colHeader name="Date" type="VARCHAR(20)"/>
+            </rowHeader>
+         </table>
+         <table colCount="8" creationSql="CREATE TABLE STUB.JKEtransactions (TransactionID INTEGER NOT NULL AUTO_INCREMENT, Type VARCHAR(30), AccountNumber INTEGER, Source VARCHAR(50), Amount REAL, PostBalance REAL, Date VARCHAR(20), ContributionID INTEGER, PRIMARY KEY (TransactionID))" name="JKEtransactions" rowCount="5">
+            <rowHeader>
+               <colHeader name="TransactionID" type="INTEGER"/>
+               <colHeader name="Type" type="VARCHAR(30)"/>
+               <colHeader name="AccountNumber" type="INTEGER"/>
+               <colHeader name="Source" type="VARCHAR(50)"/>
+               <colHeader name="Amount" type="REAL"/>
+               <colHeader name="PostBalance" type="REAL"/>
+               <colHeader name="Date" type="VARCHAR(20)"/>
+               <colHeader name="ContributionID" type="INTEGER"/>
+            </rowHeader>
+            <row>
+               <col type="java.lang.Integer" value="1"/>
+               <col type="java.lang.String" value="Withdrawl"/>
+               <col type="java.lang.Integer" value="200"/>
+               <col type="java.lang.String" value="Bills"/>
+               <col type="java.lang.Float" value="5.75"/>
+               <col type="java.lang.Float" value="6790.0"/>
+               <col type="java.lang.String" value="5/03/2010"/>
+               <col null="true"/>
+            </row>
+            <row>
+               <col type="java.lang.Integer" value="2"/>
+               <col type="java.lang.String" value="Withdrawl"/>
+               <col type="java.lang.Integer" value="200"/>
+               <col type="java.lang.String" value="Bills"/>
+               <col type="java.lang.Float" value="600.0"/>
+               <col type="java.lang.Float" value="6175.0"/>
+               <col type="java.lang.String" value="5/05/2010"/>
+               <col null="true"/>
+            </row>
+            <row>
+               <col type="java.lang.Integer" value="3"/>
+               <col type="java.lang.String" value="Deposit"/>
+               <col type="java.lang.Integer" value="200"/>
+               <col type="java.lang.String" value="Pay"/>
+               <col type="java.lang.Float" value="3000.0"/>
+               <col type="java.lang.Float" value="9175.0"/>
+               <col type="java.lang.String" value="5/14/2010"/>
+               <col null="true"/>
+            </row>
+            <row>
+               <col type="java.lang.Integer" value="4"/>
+               <col type="java.lang.String" value="Withdrawl"/>
+               <col type="java.lang.Integer" value="200"/>
+               <col type="java.lang.String" value="Food"/>
+               <col type="java.lang.Float" value="175.0"/>
+               <col type="java.lang.Float" value="9000.0"/>
+               <col type="java.lang.String" value="5/22/2010"/>
+               <col null="true"/>
+            </row>
+            <row>
+               <col type="java.lang.Integer" value="5"/>
+               <col type="java.lang.String" value="Withdrawl"/>
+               <col type="java.lang.Integer" value="200"/>
+               <col type="java.lang.String" value="Car"/>
+               <col type="java.lang.Float" value="7000.0"/>
+               <col type="java.lang.Float" value="2000.0"/>
+               <col type="java.lang.String" value="5/25/2010"/>
+               <col null="true"/>
+            </row>
+         </table>
+         <table colCount="4" creationSql="CREATE TABLE STUB.JKEuser (FirstName VARCHAR(40), LastName VARCHAR(40), UserName VARCHAR(40) NOT NULL, Password VARCHAR(40), PRIMARY KEY (UserName))" name="JKEuser" rowCount="2">
+            <rowHeader>
+               <colHeader name="FirstName" type="VARCHAR(40)"/>
+               <colHeader name="LastName" type="VARCHAR(40)"/>
+               <colHeader name="UserName" type="VARCHAR(40)"/>
+               <colHeader name="Password" type="VARCHAR(40)"/>
+            </rowHeader>
+            <row>
+               <col type="java.lang.String" value="Julie"/>
+               <col type="java.lang.String" value="Brown"/>
+               <col type="java.lang.String" value="jbrown"/>
+               <col type="java.lang.String" value="jbrown"/>
+            </row>
+            <row>
+               <col type="java.lang.String" value="Rita"/>
+               <col type="java.lang.String" value="Betts"/>
+               <col type="java.lang.String" value="rbetts"/>
+               <col type="java.lang.String" value="passw0rd"/>
+            </row>
+         </table>
+      </snapshot>
+   </resourceConfig>
+</editableResource>

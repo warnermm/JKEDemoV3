@@ -1,0 +1,17 @@
+#Fri Dec 09 14:53:10 EST 2011
+dojo-id-attribute-name=jsId
+dojo-props-attribute-name=DOJO-SETTINGS-NO-VALUE
+dojo-dijit-css=dijit/themes/dijit.css
+dojo-theme-css=dijit/themes/claro/claro.css
+dojo-source-metadata-root=/C\:/Development/targets/rsartc803-GA/SDPShared/plugins/com.ibm.etools.webtools.dojo.distributions_1.0.200.v20110526_1546/resources/1.5.0.0/expanded/
+dojo-attach-point-attribute-name=dojoAttachPoint
+dojo-bootstrap-js=dojo/dojo.js
+dojo-event-attribute-name=event
+dojo-version-attribute-name=1.5.0 (22487)
+dojo-args-attribute-name=args
+dojo-config-attribute-name=djConfig
+eclipse.preferences.version=1
+dojo-root=http\://o.aolcdn.com/dojo/1.4.1/
+dojo-type-attribute-name=dojoType
+dojo-attach-event-attribute-name=dojoAttachEvent
+dojo-css=dojo/resources/dojo.css

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?><editableResource createdTimestamp="1368626135737" createdUser="virtuser" id="-7b98094c:13ea8695cd3:-7d3b" type="environment_resource" updatedTimestamp="1368626135737" updatedUser="virtuser" version="1.0">
+   <loggingConfiguration debug="false" writeStubEventsToDB="false"/>
+   <resourceConfig>
+      <environmentVariable evdescription="" key="app_server_host" value="node2.qa"/>
+      <environmentVariable evdescription="" key="database_host" value="node1.qa"/>
+      <evbindings>
+         <evbinding evLogicalItemId="-14741a7b:13c64f33799:-7ed3" evPhysicalItemId="-14741a7b:13c64f33799:-7ec0"/>
+         <evbinding evLogicalItemId="22cb5e7b:13d5ad7e203:-7eb6" evPhysicalItemId="23fcd473:13dd33b4a8c:-7dce"/>
+         <evbinding evLogicalItemId="4d6976ee:13db190cc98:-79cf" evPhysicalItemId="4d6976ee:13db190cc98:-79a4"/>
+      </evbindings>
+   </resourceConfig>
+</editableResource>

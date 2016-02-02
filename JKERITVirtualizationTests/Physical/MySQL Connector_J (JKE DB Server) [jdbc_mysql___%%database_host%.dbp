@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><editableResource createdTimestamp="1365049671466" createdUser="root" id="23fcd473:13dd33b4a8c:-7dce" selfDescribing="MySQL Connector/J (JKE DB Server) [jdbc:mysql://%%database_host%%:3306/JKEDB, jke_user]" type="database_connection_resource" updatedTimestamp="1368626054568" updatedUser="virtuser" version="1.0">
+   <loggingConfiguration debug="false" writeStubEventsToDB="false"/>
+   <resourceConfig maxConnections="" poolName="DefaultPoolName" transportName="JKE DB Server">
+      <connectionParams driverClass="com.mysql.jdbc.Driver" password="#com.ghc.1!c640128D4ACC4476E354A2FD727E11635527" url="jdbc:mysql://%%database_host%%:3306/JKEDB" user="jke_user">
+         <stubSettings maxProcCallCount="10000" maxResultSetRowCount="10000" maxRowCount="10000" password="#com.ghc.1!fed17E03129C4ADE4476E350A2E572631175" procedureLearningBehaviour="1" schema="STUB" url="jdbc:mysql://greenhat:3306/STUB" user="jke_user"/>
+         <storedProcedureFilter catalogFilterEnabled="false" catalogFilterPattern="" procedureFilterEnabled="false" procedureFilterPattern="" schemaFilterEnabled="true" schemaFilterPattern="" storedProceduresRetrievalEnabled="false" useConnectionUsername="true"/>
+         <timestampFormatting timestampFormatZero="false" timestampFormattingEnabled="false" timestampPrecision="9"/>
+      </connectionParams>
+   </resourceConfig>
+</editableResource>

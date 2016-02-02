@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?><project basedir="/home/virtuser/workspace/JKERITVirtualizationTests" default="run-ghtester">
+   <property name="install.dir" value="/opt/IBM/RationalIntegrationTester"/>
+   <taskdef classname="com.ghc.ghTester.ant.GHTester" classpath="/opt/IBM/IBMIMShared/plugins/com.ghc.ghTester.ant_1.0.1.v20121107_1413.jar" name="GHTester"/>
+   <target depends="version-check" name="run-ghtester">
+      <GHTester environment="DEV" haltOnFailure="true" project="${basedir}/JKERITVirtualizationTests.ghp" resultsServerLogging="absolute">
+         <Tests>
+            <filelist dir="${basedir}">
+               <file name="RITJKEVirtualizationTests"/>
+            </filelist>
+         </Tests>
+         <AppProperties>
+            <property name="greenhat.net.defaultnetworkdevice" value=""/>
+         </AppProperties>
+      </GHTester>
+   </target>
+   <target name="version-check">
+      <condition property="${correct.version}">
+         <available classname="org.apache.tools.ant.taskdefs.condition.AntVersion"/>
+      </condition>
+      <antcall target="supported-version"/>
+   </target>
+   <target name="supported-version" unless="${correct.version}">
+      <fail message="Please install ant version 1.7.0 or higher"/>
+   </target>
+</project>
