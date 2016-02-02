@@ -27,7 +27,7 @@ This example is used to build the JKE sample application.
 	<property name="compilelog" value="${destdir}/compile.xml" />
 	<property name="destdir.db" value="${loadDir}/build/db" />
 	<property name="destdir.gh-test" value="${loadDir}/build/gh-test" />
-	<property name="destdir.war" value="${loadDir}/build/bin" />
+	<property name="destdir.war" value="${loadDir}/bin" />
 	
 	
 	<property name="unitTestsFailed" value="false"/>
