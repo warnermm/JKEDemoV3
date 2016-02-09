@@ -14,7 +14,7 @@ This example is used to build the JKE sample application.
 
 <project name="Build and test the JKE sample application" default="web">
 	
-	<property name="loadDir" value="${basedir}" />
+	<property name="loadDir" value="${basedir}/.." />
 	<property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter" />
 	<property name="build.debuglevel" value="lines,vars,source"/> 
 	<property name="destdir" value="${loadDir}/build" />
