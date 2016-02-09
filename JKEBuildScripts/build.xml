@@ -14,7 +14,7 @@ This example is used to build the JKE sample application.
 
 <project name="Build and test the JKE sample application" default="web">
 	
-	<property name="loadDir" value="${basedir}/.." />
+	<property name="loadDir" value="${basedir}/jke.app" />
 	<property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter" />
 	<property name="build.debuglevel" value="lines,vars,source"/> 
 	<property name="destdir" value="${loadDir}/build" />
@@ -27,7 +27,7 @@ This example is used to build the JKE sample application.
 	<property name="compilelog" value="${destdir}/compile.xml" />
 	<property name="destdir.db" value="${loadDir}/build/db" />
 	<property name="destdir.gh-test" value="${loadDir}/build/gh-test" />
-	<property name="destdir.war" value="${loadDir}/docker.jke.web/jke" />
+	<property name="destdir.war" value="${loadDir}/../docker.jke.web/jke" />
 	
 	
 	<property name="unitTestsFailed" value="false"/>
