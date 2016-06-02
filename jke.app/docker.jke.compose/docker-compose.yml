@@ -1,0 +1,13 @@
+version: "2"
+services:
+  jke.web:
+    image: dtr.ibm.hybrid.cloud.com/jke/jke.web:0
+    ports:
+      - "90:9080"
+    depends_on:
+      - jke.db
+    links:
+      - jke.db:jke.db
+  jke.db:
+    image: dtr.ibm.hybrid.cloud.com/jke/jke.db:0
+    container_name: jke.db
