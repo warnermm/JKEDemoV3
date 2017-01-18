@@ -1,4 +1,4 @@
-FROM wlp:latest
+FROM sevtekin/jke_wlp
 RUN mkdir -p /tmp/staging
 ADD jke /tmp/staging
 RUN cp /tmp/staging/jke.war /opt/wlp/usr/servers/ci/dropins/.

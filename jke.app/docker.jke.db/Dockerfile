@@ -1,4 +1,4 @@
-FROM mysq:latest
+FROM sevtekin/jke_mysql
 RUN mkdir -p /tmp/staging
 ADD jke /tmp/staging
 COPY entry.sh /root/
