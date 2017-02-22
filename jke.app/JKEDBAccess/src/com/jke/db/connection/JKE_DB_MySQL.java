@@ -51,11 +51,6 @@ public class JKE_DB_MySQL implements JKE_DB_I {
 		fDriver= props.getProperty("jdbc.driver");
 		
 		String jdbcHostname = System.getenv("JKE_DB_SERVICE_HOST");
-		File temp = File.createTempFile("tpneal-dbg", ".tmp");
-        BufferedWriter bw = new BufferedWriter(new FileWriter(temp));
-    	bw.write("JKE_DB_SERVICE_HOST is " + jdbcHostname);
-    	bw.close();
-		
 		fURL= String.format("%s//%s:%s/%s?user=%s&password=%s&autoReconnect=true&tcpKeepAlive=true",				
 				props.getProperty("jdbc.protocol"), 				
 				jdbcHostname != null ? jdbcHostname : props.getProperty("jdbc.hostname"),
