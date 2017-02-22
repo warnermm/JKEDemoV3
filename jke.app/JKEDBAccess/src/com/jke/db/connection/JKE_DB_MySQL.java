@@ -46,7 +46,7 @@ public class JKE_DB_MySQL implements JKE_DB_I {
 		fDriver= props.getProperty("jdbc.driver");
 		fURL= String.format("%s//%s:%s/%s?user=%s&password=%s&autoReconnect=true&tcpKeepAlive=true",				
 				props.getProperty("jdbc.protocol"), 				
-				props.getProperty("jdbc.hostname"),
+				System.getenv("JKE.DB.HOSTNAME") != null ? System.getenv("JKE.DB.HOSTNAME") : props.getProperty("jdbc.hostname"),
 				props.getProperty("jdbc.port"),
 				props.getProperty("jdbc.dbname"),
 				props.getProperty("jdbc.user"),				
