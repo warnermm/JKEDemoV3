@@ -20,6 +20,11 @@ import java.util.HashSet;
 import java.util.Properties;
 import java.util.Set;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+
+
 /**
  * A singleton that serves as the connection to and manager of the JKE database.
  * The database to create or connect to is specified in the JKEDB.properties
@@ -44,9 +49,16 @@ public class JKE_DB_MySQL implements JKE_DB_I {
 	protected JKE_DB_MySQL(Properties props) {
 		super();
 		fDriver= props.getProperty("jdbc.driver");
+		
+		String jdbcHostname = System.getenv("JKE_DB_SERVICE_HOST");
+		File temp = File.createTempFile("tpneal-dbg", ".tmp");
+        BufferedWriter bw = new BufferedWriter(new FileWriter(temp));
+    	bw.write("JKE_DB_SERVICE_HOST is " + jdbcHostname);
+    	bw.close();
+		
 		fURL= String.format("%s//%s:%s/%s?user=%s&password=%s&autoReconnect=true&tcpKeepAlive=true",				
 				props.getProperty("jdbc.protocol"), 				
-				System.getenv("JKE.DB.HOSTNAME") != null ? System.getenv("JKE.DB.HOSTNAME") : props.getProperty("jdbc.hostname"),
+				jdbcHostname != null ? jdbcHostname : props.getProperty("jdbc.hostname"),
 				props.getProperty("jdbc.port"),
 				props.getProperty("jdbc.dbname"),
 				props.getProperty("jdbc.user"),				
@@ -192,4 +204,5 @@ public class JKE_DB_MySQL implements JKE_DB_I {
 		fHaveMassGeneratedTables= false;
 		return dropped;
 	}
+	
 }
