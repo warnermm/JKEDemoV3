@@ -35,7 +35,7 @@ spec:
     spec:
       containers:
       - name: jke-web
-        image: 10.0.0.1/jke/jke.web:@IMAGE_TAG@
+        image: 10.0.0.1/jke/jke.web:@version.name@
         resources:
           requests:
             cpu: 100m

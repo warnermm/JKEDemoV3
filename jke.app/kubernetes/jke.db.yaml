@@ -27,7 +27,7 @@ spec:
     spec:
       containers:
       - name: jke-db
-        image: 10.0.0.1/jke/jke.db:@IMAGE_TAG@
+        image: 10.0.0.1/jke/jke.db:@version.name@
         ports:
         - containerPort: 3306
           name: mysql
