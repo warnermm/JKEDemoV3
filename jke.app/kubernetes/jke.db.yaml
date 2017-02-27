@@ -3,27 +3,27 @@ kind: Service
 metadata:
   name: jke-db
   labels:
-    app: jke-db
+    app: @container@
 spec:
   ports:
     # the port that this service should serve on
   - port: @service.port@
     targetPort: @service.port@
   selector:
-    app: jke-db
+    app: @container@
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: jke-db
   labels:
-    app: jke-db
+    app: @container@
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        app: jke-db
+        app: @container@
     spec:
       containers:
       - name: jke-db

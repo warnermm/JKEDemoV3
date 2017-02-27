@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: jke-web
   labels:
-    app: jke-web
+    app: @container@
 spec:
   # if your cluster supports it, uncomment the following to automatically create
   # an external load-balanced IP for the frontend service.
@@ -14,7 +14,7 @@ spec:
   - port: 90
     targetPort: @service.port@
   selector:
-    app: jke-web
+    app: @container@
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
@@ -31,7 +31,7 @@ spec:
   template:
     metadata:
       labels:
-        app: jke-web
+        app: @container@
     spec:
       containers:
       - name: jke-web
