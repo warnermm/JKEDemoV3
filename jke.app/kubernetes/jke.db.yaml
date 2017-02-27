@@ -7,8 +7,8 @@ metadata:
 spec:
   ports:
     # the port that this service should serve on
-  - port: 3306
-    targetPort: 3306
+  - port: @service.port@
+    targetPort: @service.port@
   selector:
     app: jke-db
 ---
@@ -27,9 +27,9 @@ spec:
     spec:
       containers:
       - name: jke-db
-        image: 10.0.0.1/jke/jke.db:@version.name@
+        image: @docker.qualified.image@
         ports:
-        - containerPort: 3306
+        - containerPort: @service.port@
           name: mysql
       imagePullSecrets:
       - name: local-dtr

@@ -12,7 +12,7 @@ spec:
   ports:
     # the port that this service should serve on
   - port: 90
-    targetPort: 9080
+    targetPort: @service.port@
   selector:
     app: jke-web
 ---
@@ -35,7 +35,7 @@ spec:
     spec:
       containers:
       - name: jke-web
-        image: 10.0.0.1/jke/jke.web:@version.name@
+        image: @docker.qualified.image@
         resources:
           requests:
             cpu: 100m
@@ -51,6 +51,6 @@ spec:
           # line below.
           # value: env
         ports:
-        - containerPort: 9080
+        - containerPort: @service.port@
       imagePullSecrets:
       - name: local-dtr
