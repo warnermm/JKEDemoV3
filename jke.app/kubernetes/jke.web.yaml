@@ -36,7 +36,6 @@ spec:
       containers:
       - name: jke-web
         image: @docker.qualified.image@
-        imagePullPolicy: Never
         resources:
           requests:
             cpu: 100m
