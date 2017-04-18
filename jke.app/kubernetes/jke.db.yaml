@@ -28,6 +28,7 @@ spec:
       containers:
       - name: jke-db
         image: @docker.qualified.image@
+        imagePullPolicy: Never
         ports:
         - containerPort: @service.port@
           name: mysql
