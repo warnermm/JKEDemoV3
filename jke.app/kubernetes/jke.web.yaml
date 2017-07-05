@@ -36,6 +36,7 @@ spec:
       containers:
       - name: jke-web
         image: @docker.qualified.image@
+        imagePullPolicy: @docker.image.pull.policy@
         resources:
           requests:
             cpu: 100m
@@ -52,5 +53,3 @@ spec:
           # value: env
         ports:
         - containerPort: @service.port@
-      imagePullSecrets:
-      - name: local-dtr
