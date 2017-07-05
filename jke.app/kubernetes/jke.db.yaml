@@ -5,7 +5,6 @@ metadata:
   labels:
     app: @docker.container.name@
 spec:
-  type: NodePort
   ports:
     # the port that this service should serve on
   - port: @service.port@
@@ -29,9 +28,7 @@ spec:
       containers:
       - name: jke-db
         image: @docker.qualified.image@
+        imagePullPolicy: @docker.image.pull.policy@
         ports:
         - containerPort: @service.port@
           name: mysql
-      imagePullSecrets:
-      - name: local-dtr
-
